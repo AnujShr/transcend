@@ -35,10 +35,17 @@
     <script src="js/modernizr.js"></script>
     <script src="js/pace.min.js"></script>
 
+
+
     <!-- favicons
     ================================================== -->
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+
+
+    <script src="js/app.js"></script>
 
 </head>
 
@@ -60,27 +67,7 @@
 
 </header> <!-- end s-header -->
 
-
-<!-- home
-================================================== -->
-<section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg" data-natural-width=3000 data-natural-height=2000 data-position-y=top>
-    @yield('home-content');
-</section> <!-- end s-home -->
-
-
-<!-- styles
-================================================== -->
-<section id="styles" class="s-styles">
-
-    @yield('page-content')
-</section> <!-- end styles -->
-
-
-<!-- contact
-================================================== -->
-<section id="contact" class="s-contact">
-    @yield('contact')
-</section> <!-- end s-contact -->
+@yield('page-content')
 
 
 <!-- photoswipe background
@@ -99,10 +86,8 @@
 
 <!-- Java Script
 ================================================== -->
-<script src="js/jquery-3.2.1.min.js"></script>
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
-
 </body>
 
 </html>

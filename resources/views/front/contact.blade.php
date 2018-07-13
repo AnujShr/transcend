@@ -33,30 +33,31 @@
 
         <ul class="contact-social">
             <li>
-                <a href="#0"><i class="fab fa-facebook"></i></a>
+                <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
             </li>
             <li>
-                <a href="#0"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.facebook.com"><i class="fab fa-twitter"></i></a>
             </li>
             <li>
-                <a href="#0"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com"><i class="fab fa-instagram"></i></a>
             </li>
             <li>
-                <a href="#0"><i class="fab fa-behance"></i></a>
+                <a href="https://www.facebook.com"><i class="fab fa-behance"></i></a>
             </li>
             <li>
-                <a href="#0"><i class="fab fa-dribbble"></i></a>
+                <a href="https://www.facebook.com"><i class="fab fa-dribbble"></i></a>
             </li>
         </ul> <!-- end contact-social -->
 
         <div class="contact-subscribe">
-            <form id="mc-form" class="group mc-form" novalidate="true"">
+            <form id="subscribe" class="group mc-form" novalidate="true"">
             {{--<form id="mc-form" class="group mc-form" novalidate="true" method="post" action="{{route('subscribe')}}">--}}
                 {{csrf_field()}}
-                <input type="email" value="" name="email" class="email" id="mc-email" placeholder="Email Address" required="">
-                <input type="submit" name="subscribe" value="Subscribe">
+            <div class="email">
+                <input type="email" name="email" id="email" class="email" placeholder="Email Address">
                 <span class="error"></span>
-                {{ $errors->first('email') }}
+                <input type="submit" name="subscribe" value="Subscribe">
+            </div>
             </form>
         </div> <!-- end contact-subscribe -->
     </div> <!-- end contact-secondary -->
@@ -65,12 +66,48 @@
 
 <div class="row">
     <div class="col-full cl-copyright">
-                <span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
+                <span>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | <a
+                            href="https://colorlib.com" target="_blank">Colorlib</a>
+                    </span>
     </div>
 </div>
 
 <div class="cl-go-top">
     <a class="smoothscroll" title="Back to Top" href="#top"><i class="icon-arrow-up" aria-hidden="true"></i></a>
 </div>
+
+<script>
+
+    $('#subscribe').submit(function (e) {
+        e.preventDefault();
+
+        var data = $(this).serialize();
+        $.ajax({
+            url: '/subscribe',
+            type: 'post',
+            data: data,
+            datatype: 'json',
+            success: function (response) {
+                alert('Succesfully subscribed');
+                $(':input', '#subscribe')
+                    .not(' :submit, :hidden')
+                    .val('')
+            },
+
+            error: function (errors) {
+                $.each(errors.responseJSON.errors,function(key,value){
+                    $('#'+key).parent('div').addClass('has-error');
+                    $('#'+key).next('span').html(value[0]);
+                    $('#'+key).next('span').addClass('help-block');
+                });
+            }
+        })
+    });
+</script>
+<style>
+    .help-block{
+        color:red;
+    }
+</style>
+

@@ -1,18 +1,26 @@
 @extends('layouts.master')
-
-@section('home-content')
-    @include('front.top-section')
-@endsection
-
 @section('page-content')
+<!-- home
+================================================== -->
+<section id="home" class="s-home target-section" data-parallax="scroll" data-image-src="images/hero-bg.jpg"
+         data-natural-width=3000 data-natural-height=2000 data-position-y=top>
+    @include('front.top-section')
+</section> <!-- end s-home -->
+
+
+<!-- styles
+================================================== -->
+<section id="styles" class="s-styles">
+
     @include('front.about')
     @include('front.content-section')
-@endsection
+</section> <!-- end styles -->
 
-@section('contact')
+
+<!-- contact
+================================================== -->
+<section id="contact" class="s-contact">
     @include('front.contact')
-@endsection
+</section> <!-- end s-contact -->
 
-@section('photoswipe')
-    @include('front.photoswipe')
 @endsection
